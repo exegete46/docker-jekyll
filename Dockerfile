@@ -1,6 +1,6 @@
 FROM ruby
 
-RUN gem install jekyll jekyll-sitemap
+RUN gem install -Nq jekyll jekyll-sitemap
 
 WORKDIR /usr/src/app
 EXPOSE 3000
