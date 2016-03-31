@@ -1,0 +1,3 @@
+FROM exegete46/jekyll
+
+ONBUILD ADD . /usr/src/app
