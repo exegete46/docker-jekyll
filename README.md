@@ -1,2 +1,5 @@
-# docker-jekyll
-Docker image for using Jekyll for development.
+# Docker Jekyll
+[Docker](https://www.docker.com/)
+image for using
+[Jekyll](https://jekyllrb.com/)
+for development and building.
