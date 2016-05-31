@@ -1,6 +1,12 @@
 FROM ruby
 
-RUN gem install -Nq jekyll jekyll-sitemap
+RUN gem install -Nq \
+  jekyll \
+  jekyll-assets \
+  jekyll-coffeescript \
+  jekyll-sitemap \
+  therubyracer \
+  uglifier
 
 WORKDIR /usr/src/app
 EXPOSE 3000
