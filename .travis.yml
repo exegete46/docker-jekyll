@@ -2,7 +2,8 @@ install: true
 services:
   - docker
 script:
-  - export JEKYLL_VERSION=$(docker run --rm exegete46/jekyll jekyll -v | cut -d' ' -f2) 
+  - docker build --tag=exegete46/jekyll:inter -f Dockerfile .
+  - export JEKYLL_VERSION=$(docker run --rm exegete46/jekyll:inter jekyll -v | cut -d' ' -f2) 
   - docker build --tag=exegete46/jekyll:$JEKYLL_VERSION  -f Dockerfile .
   - docker push exegete46/jekyll:$JEKYLL_VERSION;
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
