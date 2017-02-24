@@ -1,0 +1,12 @@
+install: true
+services:
+  - docker
+script:
+  - docker build --tag=exegete46/jekyll -f Dockerfile .
+  - docker build --tag=exegete46/jekyll:onbuild -f Dockerfile-onbuild .
+  - docker build -t exegete46/jekyll-base .
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push exegete46/jekyll;
+    docker push exegete46/jekyll:onbuild;
+    fi
