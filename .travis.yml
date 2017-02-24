@@ -2,11 +2,13 @@ install: true
 services:
   - docker
 script:
-  - docker build --tag=exegete46/jekyll -f Dockerfile .
-  - docker build --tag=exegete46/jekyll:onbuild -f Dockerfile-onbuild .
-  - docker build -t exegete46/jekyll-base .
+  - export JEKYLL_VERSION=$(docker run --rm exegete46/jekyll jekyll -v | cut -d' ' -f2) 
+  - docker build --tag=exegete46/jekyll:$JEKYLL_VERSION  -f Dockerfile .
+  - docker push exegete46/jekyll:$JEKYLL_VERSION;
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker build exegete46/jekyll:latest;
+    docker build --tag=exegete46/jekyll:onbuild -f Dockerfile-onbuild .;
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push exegete46/jekyll;
+    docker push exegete46/jekyll:latest;
     docker push exegete46/jekyll:onbuild;
     fi
