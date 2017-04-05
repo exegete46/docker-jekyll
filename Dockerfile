@@ -1,4 +1,4 @@
-FROM ruby
+FROM ruby:2.4.1
 
 RUN gem install -Nq \
   jekyll \
